@@ -89,6 +89,7 @@ set(JA2_INCLUDES "")
 set(JA2_SOURCES "")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/Build")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/sgp")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/rust")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src")
 add_subdirectory("_build/lib-MicroIni")
 add_subdirectory("_build/lib-slog")
@@ -128,7 +129,8 @@ endif()
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CFLAGS}")
 add_executable(${BINARY} ${JA2_SOURCES})
-target_link_libraries(${BINARY} ${SDL2_LIBRARY} ${Boost_LIBRARIES} ${lib-gtest} MicroIni slog smacker dl gcc_s rt util ${CMAKE_CURRENT_SOURCE_DIR}/rust/target/debug/libstracciatella.a)
+add_dependencies(${BINARY} libstracciatella)
+target_link_libraries(${BINARY} ${SDL2_LIBRARY} ${Boost_LIBRARIES} ${lib-gtest} MicroIni slog smacker ${LIBSTRACCIATELLA_LIBRARIES})
 
 macro(copy_dir_to_ja2_binary_after_build DIR)
     add_custom_command(TARGET ${BINARY} POST_BUILD
