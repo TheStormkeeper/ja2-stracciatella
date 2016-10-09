@@ -11,11 +11,12 @@ compiler:
 
 before_install:
   - sudo apt-get install cmake make g++ libsdl2-dev libboost-all-dev -y
+  - curl -sSf https://static.rust-lang.org/rustup.sh | sh
 
 script:
   - mkdir ci-build && cd ci-build
   - cmake .. && make
-  - ./ja2 -unittests
+  - ./ja2 --unittests
 
 addons:
   coverity_scan:
