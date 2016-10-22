@@ -5,7 +5,7 @@ authors = ["Stefan Lau <github@stefanlau.com>"]
 
 
 [lib]
-crate-type = ["staticlib"]
+crate-type = ["dylib"]
 name = "stracciatella"
 path = "src/stracciatella.rs"
 
